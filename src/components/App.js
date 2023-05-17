@@ -21,9 +21,6 @@ function App() {
 
   }
 
-
-
-
   const handleEditProfileClick =() =>{
     console.log('popupProf')
     const popupProfile = document.querySelector('.popup_type_edit')
