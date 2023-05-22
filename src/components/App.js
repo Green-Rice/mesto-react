@@ -3,6 +3,7 @@ import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Fotter";
 import { useState } from 'react';
+import PopupWithForm from "./PopupWithForm.js";
 
 function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false)
@@ -11,37 +12,80 @@ function App() {
 
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false)
 
-  const handleEditAvatarClick = ()=> {
-
+  const handleEditAvatarClick = () => {
     setIsEditAvatarPopupOpen(true);
-    if (isEditAvatarPopupOpen) {
-      const popupAvatar = document.querySelector('.popup_type_update-avatar')
-      popupAvatar.classList.add('popup_is-opened')
-    }
-
   }
 
-  const handleEditProfileClick =() =>{
-    console.log('popupProf')
-    const popupProfile = document.querySelector('.popup_type_edit')
-    popupProfile.classList.add('popup_is-opened')
+  const handleEditProfileClick = () => {
+    setIsEditProfilePopupOpen(true)
   }
 
   function handleAddPlaceClick() {
-    console.log('popupCard')
-    const popupCard = document.querySelector('.popup_type_add')
-    popupCard.classList.add('popup_is-opened')
+    setIsAddPlacePopupOpen(true)
   }
 
   return (
     <div className="page">
       <Header />
       <Main onEditAvatar={handleEditAvatarClick}
-            onEditProfile={handleEditProfileClick}
-            onAddPlace={handleAddPlaceClick}
-            >
+        onEditProfile={handleEditProfileClick}
+        onAddPlace={handleAddPlaceClick}
+      >
       </Main>
       <Footer />
+
+      <PopupWithForm
+        isOpen={isEditAvatarPopupOpen}
+        name="avatar"
+        title="Обновить аватар"
+
+        submit="Сохранить">
+        <div className="popup__container">
+          <input id="avatar-link" name="link" className="popup__input popup__input_type_link" type="url"
+            placeholder="Ссылка на изображение" required />
+          <span className="popup__input-error avatar-link-error"></span>
+        </div>
+      </PopupWithForm>
+
+      <PopupWithForm
+        isOpen={isEditProfilePopupOpen}
+        name="edit"
+        title="Редактировать профиль"
+        submit="Сохранить">
+
+        <input id="name-input" name="user_name" className="popup__input popup__input_type_name " type="text"
+          placeholder="Имя" required minlength="2" maxlength="40" />
+        <span className="popup__input-error name-input-error"></span>
+
+        <input id="bio-input" name="biography" className="popup__input popup__input_type_description" type="text"
+          placeholder="О тебе" required minlength="2" maxlength="200" />
+        <span className="popup__input-error bio-input-error ">Необходимо заполнить пол</span>
+
+      </PopupWithForm>
+
+      <PopupWithForm
+        isOpen={isAddPlacePopupOpen}
+        name="add"
+        title="Новое место"
+        submit="Создать">
+
+        <div className="popup__container">
+          <input id="name-card" name="name" className="popup__input popup__input_type_title" type="text"
+            placeholder="Название" required minlength="2" maxlength="30" />
+          <span className="popup__input-error name-card-error popup__input-error_active"></span>
+        </div>
+
+        <div className="popup__container">
+          <input id="link-card" name="link" className="popup__input popup__input_type_link" type="url"
+            placeholder="Ссылка на картинку" required />
+          <span className="popup__input-error link-card-error"></span>
+
+        </div>
+
+      </PopupWithForm>
+
+
+
 
 
       {/* // ПОПАП ПРОФИЛЯ */}
@@ -132,6 +176,7 @@ function App() {
           </form>
         </div>
       </div>
+
 
       {/* // ТЕМПЛЕЙ ЭЛЕМЕНТ */}
       <template className="template-element">
