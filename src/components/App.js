@@ -24,6 +24,12 @@ function App() {
     setIsAddPlacePopupOpen(true)
   }
 
+  function closeAllPopups() {
+    setIsEditAvatarPopupOpen(false);
+    setIsEditProfilePopupOpen(false)
+    setIsAddPlacePopupOpen(false)
+  }
+
   return (
     <div className="page">
       <Header />
@@ -35,6 +41,7 @@ function App() {
       <Footer />
 
       <PopupWithForm
+        onClose={closeAllPopups}
         isOpen={isEditAvatarPopupOpen}
         name="avatar"
         title="Обновить аватар"
@@ -48,6 +55,7 @@ function App() {
       </PopupWithForm>
 
       <PopupWithForm
+        onClose={closeAllPopups}
         isOpen={isEditProfilePopupOpen}
         name="edit"
         title="Редактировать профиль"
@@ -65,6 +73,7 @@ function App() {
 
       <PopupWithForm
         isOpen={isAddPlacePopupOpen}
+        onClose={closeAllPopups}
         name="add"
         title="Новое место"
         submit="Создать">
