@@ -2,8 +2,12 @@ import React, { useEffect, useState } from "react";
 import { api } from "../utils/api";
 import Card from "./Card";
 
-const Main = (props) => {
-
+const Main = ({
+   onEditAvatar,
+   onEditProfile,
+   onAddPlace,
+   onCardClick}) => {
+  console.log(onCardClick)
   const [userName, setUserName] = useState()
   const [userDescription, setUserDescription] = useState()
   const [userAvatar, setUserAvatar] = useState()
@@ -30,7 +34,7 @@ const Main = (props) => {
       <section className="profile">
         <button type="button"
           className="button profile__avatar-changes"
-          onClick={props.onEditAvatar}>
+          onClick={onEditAvatar}>
 
           <img className="profile__img" src={userAvatar} alt={userName} />
         </button>
@@ -38,7 +42,7 @@ const Main = (props) => {
           <div className="profile__wrapper">
             <h1 className="profile__user-name">{userName}</h1>
             <button type="button" className="profile__edit-button"
-              onClick={props.onEditProfile}>
+              onClick={onEditProfile}>
 
             </button>
           </div>
@@ -48,7 +52,7 @@ const Main = (props) => {
 
         <button type="button"
           className="profile__add-button"
-          onClick={props.onAddPlace}>
+          onClick={onAddPlace}>
         </button>
 
       </section>
@@ -58,7 +62,8 @@ const Main = (props) => {
             <Card
               key={card._id}
               card={card}
-
+              onCardClick={onCardClick}
+              
               {...card}
             ></Card>
           ))}
