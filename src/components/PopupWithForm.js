@@ -15,7 +15,7 @@ const PopupWithForm = (props) => {
 
                 <form name={`${props.name}__form`}
                  className="popup__form"
-                 novalidate>
+                 noValidate>
                      {props.children}
                     <button className="popup__submit"
                      type="submit"

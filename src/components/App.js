@@ -73,11 +73,11 @@ function App() {
         submit="Сохранить">
 
         <input id="name-input" name="user_name" className="popup__input popup__input_type_name " type="text"
-          placeholder="Имя" required minlength="2" maxlength="40" />
+          placeholder="Имя" required minLength="2" maxLength="40" />
         <span className="popup__input-error name-input-error"></span>
 
         <input id="bio-input" name="biography" className="popup__input popup__input_type_description" type="text"
-          placeholder="О тебе" required minlength="2" maxlength="200" />
+          placeholder="О тебе" required minLength="2" maxLength="200" />
         <span className="popup__input-error bio-input-error ">Необходимо заполнить пол</span>
 
       </PopupWithForm>
@@ -91,7 +91,7 @@ function App() {
 
         <div className="popup__container">
           <input id="name-card" name="name" className="popup__input popup__input_type_title" type="text"
-            placeholder="Название" required minlength="2" maxlength="30" />
+            placeholder="Название" required minLength="2" maxLength="30" />
           <span className="popup__input-error name-card-error popup__input-error_active"></span>
         </div>
 
@@ -105,7 +105,7 @@ function App() {
       </PopupWithForm>
 
       <ImagePopup card={selectedCard} onClose={closeAllPopups}>
-        
+
       </ImagePopup>
 
     </div>
