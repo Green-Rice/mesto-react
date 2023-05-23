@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { api } from "../utils/api";
+import Card from "./Card";
 
 const Main = (props) => {
 
@@ -16,10 +17,9 @@ const Main = (props) => {
       setUserAvatar(data.avatar);
     })
       .catch(err => { console.log(err) })
-    api.getStarterCards().then(data => {
-      console.log(data);
-      setCards(data)
-    })
+      api.getStarterCards().then((data) => {
+        setCards(data)
+      })
       .catch(err => { console.log(err) })
   }, [])
 
@@ -54,22 +54,14 @@ const Main = (props) => {
       </section>
 
       <section className="elements">
-      {/* console.log(cards); */}
-        {cards.map((card, _id) => (
-          <template key={_id} class="template-element">
-            <article class="element">
-              <img class="element__img" src={card.link} alt={card.name} />
-              <button type="button" class="element__trash"></button>
-              <div class="element__description">
-                <h2 class="element__caption">{card.name}</h2>
-                <div class="element__counter">
-                  <button type="button" class="element__like-btn"></button>
-                  <div class="element__count">{card.likes}</div>
-                </div>
-              </div>
-            </article>
-            </template>
-        ))}
+      {cards.map((card) => (
+            <Card
+              key={card._id}
+              card={card}
+
+              {...card}
+            ></Card>
+          ))}
 
       </section>
     </main>
