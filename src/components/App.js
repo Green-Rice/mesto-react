@@ -36,12 +36,14 @@ function App() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false)
     setIsAddPlacePopupOpen(false)
-    setSelectedCard({isOpen: false,
-      item: {},})
+    setSelectedCard({
+      isOpen: false,
+      item: {},
+    })
   }
 
   return (
-    <div className="page">
+    <>
       <Header />
       <Main
         onEditAvatar={handleEditAvatarClick}
@@ -53,19 +55,23 @@ function App() {
       </Main>
       <Footer />
 
+      {/* //Попап Аватара */}
+
       <PopupWithForm
         onClose={closeAllPopups}
         isOpen={isEditAvatarPopupOpen}
         name="avatar"
         title="Обновить аватар"
-
         submit="Сохранить">
+
         <div className="popup__container">
           <input id="avatar-link" name="link" className="popup__input popup__input_type_link" type="url"
             placeholder="Ссылка на изображение" required />
           <span className="popup__input-error avatar-link-error"></span>
         </div>
       </PopupWithForm>
+
+      {/* //Попап Профиля */}
 
       <PopupWithForm
         onClose={closeAllPopups}
@@ -74,15 +80,17 @@ function App() {
         title="Редактировать профиль"
         submit="Сохранить">
 
-        <input id="name-input" name="user_name" className="popup__input popup__input_type_name " type="text"
-          placeholder="Имя" required minLength="2" maxLength="40" />
-        <span className="popup__input-error name-input-error"></span>
+          <input id="name-input" name="user_name" className="popup__input popup__input_type_name " type="text"
+            placeholder="Имя" required minLength="2" maxLength="40" />
+          <span className="popup__input-error name-input-error"></span>
 
-        <input id="bio-input" name="biography" className="popup__input popup__input_type_description" type="text"
-          placeholder="О тебе" required minLength="2" maxLength="200" />
-        <span className="popup__input-error bio-input-error ">Необходимо заполнить пол</span>
+          <input id="bio-input" name="biography" className="popup__input popup__input_type_description" type="text"
+            placeholder="О тебе" required minLength="2" maxLength="200" />
+          <span className="popup__input-error bio-input-error ">Необходимо заполнить пол</span>
 
       </PopupWithForm>
+
+      {/* //Попап Карточки */}
 
       <PopupWithForm
         isOpen={isAddPlacePopupOpen}
@@ -110,7 +118,7 @@ function App() {
 
       </ImagePopup>
 
-    </div>
+    </>
   );
 }
 
