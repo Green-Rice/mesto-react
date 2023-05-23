@@ -36,7 +36,8 @@ function App() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false)
     setIsAddPlacePopupOpen(false)
-    setSelectedCard(false)
+    setSelectedCard({isOpen: false,
+      item: {},})
   }
 
   return (
@@ -47,6 +48,7 @@ function App() {
         onEditProfile={handleEditProfileClick}
         onAddPlace={handleAddPlaceClick}
         onCardClick={setSelectedCard}
+        onClose={closeAllPopups}
       >
       </Main>
       <Footer />

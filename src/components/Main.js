@@ -6,8 +6,10 @@ const Main = ({
    onEditAvatar,
    onEditProfile,
    onAddPlace,
-   onCardClick}) => {
-  console.log(onCardClick)
+   onCardClick,
+   onClose
+  }) => {
+
   const [userName, setUserName] = useState()
   const [userDescription, setUserDescription] = useState()
   const [userAvatar, setUserAvatar] = useState()
@@ -63,7 +65,7 @@ const Main = ({
               key={card._id}
               card={card}
               onCardClick={onCardClick}
-              
+              onClose={onClose}
               {...card}
             ></Card>
           ))}
