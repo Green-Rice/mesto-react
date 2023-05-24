@@ -15,7 +15,6 @@ const formsConfig = {
   const popupSelector = '.popup_type_review'; //  Попап широкоформатной карточки
   const popupChangesAvatar = document.querySelector(".popup_type_update-avatar");//Попап изменения аватарки
 
-
   //Popup open button
   const popupEditOpen = document.querySelector(".profile__edit-button");//Кнопка Редакт. проф
   const buttonOpenAddCardPopup = document.querySelector(".profile__add-button"); //Кнопка add card
@@ -25,13 +24,11 @@ const formsConfig = {
   const inputProfileName = document.querySelector('.popup__input_type_name');
   const inputProfileBio = document.querySelector('.popup__input_type_description');
 
-
   // Селекторы
   const contenerCards = '.elements';
   const nameSelector = '.profile__user-name'
   const infoSelector = '.profile__description'
   const avatarSelector = '.profile__img'
-
 
   export {
     formsConfig,

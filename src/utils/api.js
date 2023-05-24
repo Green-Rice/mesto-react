@@ -1,9 +1,6 @@
 import  {baseUrl} from './utils'
 import  {token} from './utils'
 
-
-
-
  class Api {
     constructor(baseUrl, headers) {
       this._baseUrl = baseUrl;
@@ -47,7 +44,6 @@ import  {token} from './utils'
       })
         .then(res => this._checkResponse(res))
     }
-
 
     addCardToServer(data) {
       return fetch(`${this._baseUrl}/cards`,

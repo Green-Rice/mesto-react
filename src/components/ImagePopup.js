@@ -2,7 +2,6 @@ import React from "react";
 const ImagePopup = ({ card, onClose }) => {
   console.log(card.isOpen)
 
-
   const checkIsOpen = card.isOpen
     ? "popup popup_type_review popup_is-opened"
     : "popup popup_type_review";

@@ -4,8 +4,6 @@ const PopupWithForm = (props) => {
     ? `popup popup_type_${props.name} popup_is-opened`
     : `popup popup_type_${props.name}`;
 
-
-
     return (
         <div className={checkIsOpen}>
             <div className="popup__content">
