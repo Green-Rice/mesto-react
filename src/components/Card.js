@@ -1,15 +1,13 @@
 import React from "react";
 
 const Card = ({card, onCardClick}) => {
-  
+
     const handleClickImg =() =>{
       onCardClick({
         isOpen: true,
         item: card,
       });
     }
-
-
     return(
         <article className="element">
               <img className="element__img" src={card.link} alt={card.name} onClick={handleClickImg} />
@@ -24,5 +22,4 @@ const Card = ({card, onCardClick}) => {
             </article>
     )
 }
-
 export default Card;

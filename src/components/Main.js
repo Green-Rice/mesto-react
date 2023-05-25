@@ -29,9 +29,7 @@ const Main = ({
       .catch(err => { console.log(err) })
   }, [])
 
-
   return (
-
     <main className="content">
       <section className="profile">
         <button type="button"
@@ -45,10 +43,8 @@ const Main = ({
             <h1 className="profile__user-name">{userName}</h1>
             <button type="button" className="profile__edit-button"
               onClick={onEditProfile}>
-
             </button>
           </div>
-
           <p className="profile__description">{userDescription}</p>
         </div>
 
@@ -56,7 +52,6 @@ const Main = ({
           className="profile__add-button"
           onClick={onAddPlace}>
         </button>
-
       </section>
 
       <section className="elements">

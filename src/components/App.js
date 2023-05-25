@@ -107,17 +107,13 @@ function App() {
           <input id="link-card" name="link" className="popup__input popup__input_type_link" type="url"
             placeholder="Ссылка на картинку" required />
           <span className="popup__input-error link-card-error"></span>
-
         </div>
 
       </PopupWithForm>
-
+    {/* //Попап Картинки */}
       <ImagePopup card={selectedCard} onClose={closeAllPopups}>
-
       </ImagePopup>
-
     </>
   );
 }
-
 export default App;
