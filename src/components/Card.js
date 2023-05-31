@@ -11,7 +11,7 @@ const Card = ({ card, onCardClick }) => {
   // Создаём переменную, которую после зададим в `className` для кнопки лайка
   const cardLikeButtonClassName = (
     `element__like-btn ${isLiked && 'element__like-btn_active'}`
-  );;
+  );
 
   const handleClickImg = () => {
     onCardClick({

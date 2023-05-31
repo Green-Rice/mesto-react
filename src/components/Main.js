@@ -8,7 +8,8 @@ const Main = ({
   onEditProfile,
   onAddPlace,
   onCardClick,
-  onClose
+  onClose,
+  onCardLike
 }) => {
 
   const currentUser = React.useContext(CurrentUserContext);
@@ -16,12 +17,6 @@ const Main = ({
   const [cards, setCards] = useState([])
 
   useEffect(() => {
-    // api.getUserInfo().then((data) => {
-    //   setUserName(data.name);
-    //   setUserDescription(data.about);
-    //   setUserAvatar(data.avatar);
-    // })
-    //   .catch(err => { console.log(err) })
     api.getStarterCards().then((data) => {
       setCards(data)
     })
@@ -61,6 +56,7 @@ const Main = ({
             onCardClick={onCardClick}
             onClose={onClose}
             {...card}
+            onCardLike={onCardLike}
           ></Card>
         ))}
 
