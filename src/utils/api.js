@@ -67,25 +67,8 @@ class Api {
       .then(res => this._checkResponse(res))
   }
 
-  changeLikeCardStatus (data, isLiked) {
-    console.log(data)
-    if (isLiked) {
-      return fetch(`${this._baseUrl}/cards/${data._id}/likes`, {
-        method: 'PUT',
-        headers: this._headers,
-      })
-      .then(this._responseStatus);
-    } else {
-      return fetch(`${this._baseUrl}/cards/${data._id}/likes`, {
-        method: 'DELETE',
-        headers: this._headers,
-      })
-      .then(this._responseStatus);
-    }
-  }
-
-  setLikes(data) {
-    return fetch(`${this._baseUrl}/cards/${data._id}/likes`,
+  setLikes(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`,
       {
         method: 'PUT',
         headers: this._headers,
@@ -93,8 +76,8 @@ class Api {
       .then(res => this._checkResponse(res))
   }
 
-  deleteLikes(data) {
-    return fetch(`${this._baseUrl}/cards/${data._id}/likes`,
+  deleteLikes(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`,
       {
         method: 'DELETE',
         headers: this._headers,

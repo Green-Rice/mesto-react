@@ -12,7 +12,10 @@ import { api } from '../utils/api';
 function App() {
   // Нач стейт юзера
   const [currentUser, setCurrentUser] = useState({});
+
+  const [cards, setCards] = useState([])
   //Стейты попапов
+
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false)
 
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false)
@@ -24,25 +27,54 @@ function App() {
     item: {},
   });
 
-  const [cards, setCards] = useState([]);
 
-  useEffect(() => {
-    api.getUserInfo().then(data => {
+
+  useEffect(()=> {
+    //запрос данных о пользователе с серва
+    api.getUserInfo().then(data =>{
+      // console.log(data)
       setCurrentUser(data)
     })
-      .catch(err => { console.log(err) })
-  })
-  function handleCardLike(card) {
+    .catch(err => { console.log(err) })
+  },[])
 
+  useEffect(()=> {
+    //Запрос карточек с серва
+    api.getStarterCards().then(card => {
+      setCards(card)
+    })
+    .catch(err => { console.log(err) })
+  },[])
+
+
+
+
+  //Обработка лайка
+  function handleCardLike(card) {
     // Снова проверяем, есть ли уже лайк на этой карточке
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    const isLiked = card.likes.some((user) => user._id === currentUser._id);
     console.log(isLiked)
 
     // Отправляем запрос в API и получаем обновлённые данные карточки
-    api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
-      setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
-    });
-  }
+    if(!isLiked) {
+      api.setLikes(card._id).then((newCard) => {
+
+          setCards((state) =>
+          state.map((item) => (item._id === card._id ? newCard : item))
+          );
+        })
+        .catch(err => { console.log(err) });
+    } else {
+      api.deleteLikes(card._id).then((newCard) => {
+
+        setCards((state) =>
+        state.map((item) => (item._id === card._id ? newCard : item))
+        );
+      })
+      .catch(err => { console.log(err) });
+    }
+
+}
 
 
 
@@ -74,12 +106,13 @@ function App() {
       <CurrentUserContext.Provider value={currentUser}>
         <Header />
         <Main
-          onEditAvatar={handleEditAvatarClick}
           onEditProfile={handleEditProfileClick}
+          onEditAvatar={handleEditAvatarClick}
           onAddPlace={handleAddPlaceClick}
           onCardClick={setSelectedCard}
-          onClose={closeAllPopups}
           onCardLike={handleCardLike}
+          onClose={closeAllPopups}
+          cards={cards}
         >
         </Main>
         <Footer />
