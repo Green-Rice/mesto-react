@@ -13,6 +13,14 @@ const Card = (props) => {
     `element__like-btn ${isLiked && 'element__like-btn_active'}`// Создаём переменную, которую после зададим в `className` для кнопки лайка
   );
 
+  const handleDeleteClick = () => {
+    props.onCardDelete({
+      isOpen: true,
+      item: props.card,
+    });
+
+  }
+
   const handleClickImg = () => {
     props.onCardClick({
       isOpen: true,
@@ -27,7 +35,7 @@ const Card = (props) => {
   return (
     <article className="element">
       <img className="element__img" src={props.card.link} alt={props.card.name} onClick={handleClickImg} />
-      {isOwn && <button className='element__trash element__trash_active' />}
+      {isOwn && <button className='element__trash element__trash_active' onClick={handleDeleteClick}/>}
       <div className="element__description">
         <h2 className="element__caption">{props.card.name}</h2>
         <div className="element__counter">

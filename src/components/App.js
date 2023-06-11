@@ -29,64 +29,60 @@ function App() {
 
 
 
-  useEffect(()=> {
+  useEffect(() => {
     //запрос данных о пользователе с серва
-    api.getUserInfo().then(data =>{
+    api.getUserInfo().then(data => {
       // console.log(data)
       setCurrentUser(data)
     })
-    .catch(err => { console.log(err) })
-  },[])
+      .catch(err => { console.log(err) })
+  }, [])
 
-  useEffect(()=> {
+  useEffect(() => {
     //Запрос карточек с серва
     api.getStarterCards().then(card => {
       setCards(card)
     })
+      .catch(err => { console.log(err) })
+  }, [])
+
+  //удаление карточки
+  function handleCardDelete(card) {
+    api.deleteCard(card._id).then(data =>{
+      setCards((cards) => cards.filter((item) => item._id !== card._id))
+    })
     .catch(err => { console.log(err) })
-  },[])
-
-
-
+  }
 
   //Обработка лайка
   function handleCardLike(card) {
     // Снова проверяем, есть ли уже лайк на этой карточке
     const isLiked = card.likes.some((user) => user._id === currentUser._id);
-    console.log(isLiked)
 
     // Отправляем запрос в API и получаем обновлённые данные карточки
-    if(!isLiked) {
+    if (!isLiked) {
       api.setLikes(card._id).then((newCard) => {
-
-          setCards((state) =>
+        setCards((state) =>
           state.map((item) => (item._id === card._id ? newCard : item))
-          );
-        })
+        );
+      })
         .catch(err => { console.log(err) });
     } else {
       api.deleteLikes(card._id).then((newCard) => {
-
         setCards((state) =>
-        state.map((item) => (item._id === card._id ? newCard : item))
+          state.map((item) => (item._id === card._id ? newCard : item))
         );
       })
-      .catch(err => { console.log(err) });
+        .catch(err => { console.log(err) });
     }
-
-}
-
-
-
-
+  }
+//Обработка попапов
   const handleEditAvatarClick = () => {
     setIsEditAvatarPopupOpen(true);
   }
-
   const handleEditProfileClick = () => {
     setIsEditProfilePopupOpen(true)
   }
-
   function handleAddPlaceClick() {
     setIsAddPlacePopupOpen(true)
   }
@@ -109,6 +105,7 @@ function App() {
           onEditProfile={handleEditProfileClick}
           onEditAvatar={handleEditAvatarClick}
           onAddPlace={handleAddPlaceClick}
+          onCardDelete={handleCardDelete}
           onCardClick={setSelectedCard}
           onCardLike={handleCardLike}
           onClose={closeAllPopups}

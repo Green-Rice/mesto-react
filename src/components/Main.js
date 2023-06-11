@@ -3,17 +3,18 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import Card from "./Card";
 
 const Main = ({
-  onEditAvatar,
   onEditProfile,
-  onAddPlace,
+  onEditAvatar,
+  onCardDelete,
   onCardClick,
-  onClose,
   onCardLike,
+  onAddPlace,
+  onClose,
   cards
 }) => {
 
   const currentUser = React.useContext(CurrentUserContext);
-  
+
   return (
     <main className="content">
       <section className="profile">
@@ -40,12 +41,14 @@ const Main = ({
       </section>
 
       <section className="elements">
-      {cards.map((card) => (
-          <Card card={card}
-           onCardClick={onCardClick}
+        {cards.map((card) => (
+          <Card
+            onCardDelete={onCardDelete}
+            onCardClick={onCardClick}
             onCardLike={onCardLike}
             onClose={onClose}
-            key={card._id}/>
+            key={card._id}
+            card={card}/>
         ))}
 
       </section>
