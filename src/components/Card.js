@@ -14,10 +14,7 @@ const Card = (props) => {
   );
 
   const handleDeleteClick = () => {
-    props.onCardDelete({
-      isOpen: true,
-      item: props.card,
-    });
+    props.onCardDelete(props.card);
 
   }
 

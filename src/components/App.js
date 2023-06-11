@@ -1,12 +1,13 @@
 import '../index.css';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
+import { useEffect, useState } from 'react';
+import { api } from '../utils/api';
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Fotter";
-import PopupWithForm from "./PopupWithForm.js";
 import ImagePopup from './ImagePopup';
-import { useEffect, useState } from 'react';
-import { CurrentUserContext } from '../contexts/CurrentUserContext';
-import { api } from '../utils/api';
+import PopupWithForm from "./PopupWithForm.js";
+import EditProfilePopup from './EditProfilePopup';
 
 
 function App() {
@@ -48,10 +49,11 @@ function App() {
 
   //удаление карточки
   function handleCardDelete(card) {
-    api.deleteCard(card._id).then(data =>{
-      setCards((cards) => cards.filter((item) => item._id !== card._id))
-    })
-    .catch(err => { console.log(err) })
+    api.deleteCard(card._id)
+      .then(() => {
+        setCards((state) => state.filter((item) => item._id !== card._id))
+      })
+      .catch(err => { console.log(err) })
   }
 
   //Обработка лайка
@@ -76,7 +78,8 @@ function App() {
         .catch(err => { console.log(err) });
     }
   }
-//Обработка попапов
+
+  //Обработка попапов
   const handleEditAvatarClick = () => {
     setIsEditAvatarPopupOpen(true);
   }
@@ -132,22 +135,10 @@ function App() {
 
         {/* //Попап Профиля */}
 
-        <PopupWithForm
-          onClose={closeAllPopups}
+        <EditProfilePopup
           isOpen={isEditProfilePopupOpen}
-          name="edit"
-          title="Редактировать профиль"
-          submit="Сохранить">
-
-          <input id="name-input" name="user_name" className="popup__input popup__input_type_name " type="text"
-            placeholder="Имя" required minLength="2" maxLength="40" />
-          <span className="popup__input-error name-input-error"></span>
-
-          <input id="bio-input" name="biography" className="popup__input popup__input_type_description" type="text"
-            placeholder="О тебе" required minLength="2" maxLength="200" />
-          <span className="popup__input-error bio-input-error ">Необходимо заполнить пол</span>
-
-        </PopupWithForm>
+          onClose={closeAllPopups}
+        />
 
         {/* //Попап Карточки */}
 

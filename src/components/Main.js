@@ -18,7 +18,8 @@ const Main = ({
   return (
     <main className="content">
       <section className="profile">
-        <button type="button"
+        <button
+          type="button"
           className="button profile__avatar-changes"
           onClick={onEditAvatar}>
 
@@ -27,8 +28,10 @@ const Main = ({
         <div className="profile__info">
           <div className="profile__wrapper">
             <h1 className="profile__user-name">{currentUser.name}</h1>
-            <button type="button" className="profile__edit-button"
-              onClick={onEditProfile}>
+            <button
+             type="button"
+             className="profile__edit-button"
+             onClick={onEditProfile}>
             </button>
           </div>
           <p className="profile__description">{currentUser.about}</p>
