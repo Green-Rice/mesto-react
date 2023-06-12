@@ -14,6 +14,7 @@ function EditProfilePopup(props) {
     const [name, setName] = useState()
     const [description, setDescription] = useState()
 
+
     const handlerInputUserName = (event) => {
         setName(event.target.value)
     }
@@ -21,8 +22,13 @@ function EditProfilePopup(props) {
         setDescription(event.target.value)
     }
 
-    const handlerSubmiUserInfo = (event) => {
+    const handleSubmit = (event) => {
+        console.log('111')
         event.preventDefault();
+        props.onUpdateUser({
+            name,
+            about: description,
+        });
     }
 
     return (
@@ -31,7 +37,8 @@ function EditProfilePopup(props) {
             isOpen={props.isOpen}
             name="edit"
             title="Редактировать профиль"
-            submit="Сохранить">
+            submit="Сохранить"
+            onSubmit={handleSubmit}>
             <>
                 <input
                     id="name-input"

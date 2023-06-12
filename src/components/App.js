@@ -47,6 +47,16 @@ function App() {
       .catch(err => { console.log(err) })
   }, [])
 
+  //обработчик форм профиля
+ function handleUpdateUser({name, about}){
+  console.log('11')
+  api.patchUserInfo({name, about}).then(userData =>{
+    setCurrentUser(userData)
+    closeAllPopups()
+  })
+  .catch(err => { console.log(err) })
+ }
+
   //удаление карточки
   function handleCardDelete(card) {
     api.deleteCard(card._id)
@@ -137,6 +147,7 @@ function App() {
 
         <EditProfilePopup
           isOpen={isEditProfilePopupOpen}
+          onUpdateUser={handleUpdateUser}
           onClose={closeAllPopups}
         />
 
