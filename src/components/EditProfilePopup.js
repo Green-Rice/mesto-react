@@ -3,27 +3,17 @@ import PopupWithForm from "./PopupWithForm";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function EditProfilePopup(props) {
-
     const currentUser = useContext(CurrentUserContext);
+
+    const [description, setDescription] = useState('')
+    const [name, setName] = useState('')
 
     useEffect(() => {
         setName(currentUser.name);
         setDescription(currentUser.about);
     }, [currentUser]);
 
-    const [name, setName] = useState()
-    const [description, setDescription] = useState()
-
-
-    const handlerInputUserName = (event) => {
-        setName(event.target.value)
-    }
-    const handlerInputUserDescription = (event) => {
-        setDescription(event.target.value)
-    }
-
     const handleSubmit = (event) => {
-        console.log('111')
         event.preventDefault();
         props.onUpdateUser({
             name,
@@ -33,36 +23,38 @@ function EditProfilePopup(props) {
 
     return (
         <PopupWithForm
+            onSubmit={handleSubmit}
             onClose={props.onClose}
             isOpen={props.isOpen}
-            name="edit"
             title="Редактировать профиль"
             submit="Сохранить"
-            onSubmit={handleSubmit}>
+            name="edit">
             <>
                 <input
-                    id="name-input"
-                    value={name}
-                    name="user_name"
                     className="popup__input popup__input_type_name "
-                    type="text"
+                    value={name || ''}
                     placeholder="Имя"
-                    required minLength="2"
+                    name="user_name"
+                    id="name-input"
                     maxLength="40"
-                    onChange={handlerInputUserName} />
+                    minLength="2"
+                    type="text"
+                    required
+                    onChange={event => setName(event.target.value)} />
 
                 <span className="popup__input-error name-input-error"></span>
 
                 <input
-                    id="bio-input"
-                    value={description}
-                    name="biography"
                     className="popup__input popup__input_type_description"
-                    type="text"
+                    value={description || ''}
                     placeholder="О тебе"
-                    required minLength="2"
+                    name="biography"
                     maxLength="200"
-                    onChange={handlerInputUserDescription} />
+                    id="bio-input"
+                    minLength="2"
+                    type="text"
+                    required
+                    onChange={event => setDescription(event.target.value)} />
 
                 <span className="popup__input-error bio-input-error ">Необходимо заполнить пол</span>
             </>

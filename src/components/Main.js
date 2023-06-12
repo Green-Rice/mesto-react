@@ -29,17 +29,18 @@ const Main = ({
           <div className="profile__wrapper">
             <h1 className="profile__user-name">{currentUser.name}</h1>
             <button
-             type="button"
-             className="profile__edit-button"
-             onClick={onEditProfile}>
+              className="profile__edit-button"
+              onClick={onEditProfile}
+              type="button">
             </button>
           </div>
           <p className="profile__description">{currentUser.about}</p>
         </div>
 
-        <button type="button"
+        <button
           className="profile__add-button"
-          onClick={onAddPlace}>
+          onClick={onAddPlace}
+          type="button">
         </button>
       </section>
 
@@ -51,9 +52,8 @@ const Main = ({
             onCardLike={onCardLike}
             onClose={onClose}
             key={card._id}
-            card={card}/>
+            card={card} />
         ))}
-
       </section>
     </main>
   )

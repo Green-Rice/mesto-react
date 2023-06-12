@@ -5,10 +5,11 @@ const ImagePopup = ({ card, onClose }) => {
     : "popup popup_type_review";
 
   return (
-    <div div className={checkIsOpen} >
+    <div className={checkIsOpen} >
       <div className="popup__view">
         <button type="button" className="popup__close" onClick={onClose} ></button>
-        <img className="popup__img"
+        <img
+          className="popup__img"
           src={card.item.link}
           alt={card.item.name}
         />

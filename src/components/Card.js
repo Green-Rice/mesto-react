@@ -15,7 +15,6 @@ const Card = (props) => {
 
   const handleDeleteClick = () => {
     props.onCardDelete(props.card);
-
   }
 
   const handleClickImg = () => {
@@ -31,8 +30,12 @@ const Card = (props) => {
 
   return (
     <article className="element">
-      <img className="element__img" src={props.card.link} alt={props.card.name} onClick={handleClickImg} />
-      {isOwn && <button className='element__trash element__trash_active' onClick={handleDeleteClick}/>}
+      <img className="element__img"
+        src={props.card.link}
+        alt={props.card.name}
+        onClick={handleClickImg}
+      />
+      {isOwn && <button className='element__trash element__trash_active' onClick={handleDeleteClick} />}
       <div className="element__description">
         <h2 className="element__caption">{props.card.name}</h2>
         <div className="element__counter">

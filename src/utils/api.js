@@ -23,15 +23,12 @@ class Api {
       .then(res => this._checkResponse(res))
   }
 
-  patchUserInfo(data) {
+  patchUserInfo(name, about) {
     return fetch(`${this._baseUrl}/users/me`,
       {
         method: 'PATCH',
         headers: this._headers,
-        body: JSON.stringify({
-          name: data.user_name,
-          about: data.biography
-        })
+        body: JSON.stringify(name, about)
       })
       .then(res => this._checkResponse(res))
   }
@@ -45,15 +42,12 @@ class Api {
       .then(res => this._checkResponse(res))
   }
 
-  addCardToServer(data) {
+  addCardToServer( name, link ) {
     return fetch(`${this._baseUrl}/cards`,
       {
         method: 'POST',
         headers: this._headers,
-        body: JSON.stringify({
-          name: data.name,
-          link: data.link
-        })
+        body: JSON.stringify(name, link)
       })
       .then(res => this._checkResponse(res))
   }
@@ -85,14 +79,12 @@ class Api {
       .then(res => this._checkResponse(res))
   }
 
-  patchAvaratImage(data) {
+  setUserAvatar(data) {
     return fetch(`${this._baseUrl}/users/me/avatar`,
       {
         method: 'PATCH',
         headers: this._headers,
-        body: JSON.stringify({
-          avatar: data.link
-        })
+        body: JSON.stringify(data)
       })
       .then(res => this._checkResponse(res))
   }
